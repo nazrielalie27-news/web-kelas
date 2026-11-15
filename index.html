@@ -456,6 +456,18 @@ var ADMIN_KODE = "xf2026";
   </div>
 </div>
 
+<!-- ===== POP-UP PENGUMUMAN TERJADWAL ===== -->
+<div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupJudul">
+  <div class="popup-box">
+    <button type="button" class="popup-close" id="btnTutupPopup" aria-label="Tutup pengumuman">&times;</button>
+    <span class="popup-badge">Pengumuman Kelas X F</span>
+    <h3 id="popupJudul">Judul Pengumuman</h3>
+    <p id="popupIsi">Isi pengumuman akan muncul di sini.</p>
+    <div class="popup-timer-wrap"><div class="popup-timer-fill" id="popupBar"></div></div>
+    <div class="popup-timer-txt" id="popupCountdown">Menutup otomatis dalam 10 detik...</div>
+  </div>
+</div>
+
 <!-- ===== POP-UP KATA SANDI HGN 2026 ===== -->
 <div class="pass-overlay" id="passOverlay" role="dialog" aria-modal="true" aria-labelledby="passJudul">
   <div class="pass-box">
@@ -1226,7 +1238,7 @@ var MAINT_TAB_NAME = "Sheet1";
    PENGATURAN POP-UP PENGUMUMAN & BUTTON KOTAK HGN 2026
    ============================================================ */
 var PENGUMUMAN_CFG = {
-  previewSekarang: false,      // Ubah ke true kalau mau cek pop-up sekarang, kembalikan ke false agar baru muncul tgl 25
+  previewSekarang: true,       // Ubah jadi false kalau sudah selesai tes agar baru muncul tgl 25
   tanggalTampil: "2026-11-25", // Muncul otomatis pada tanggal 25 November 2026
   judul: "Selamat Hari Guru Nasional 2026",
   isi: "Tulis isi pengumuman kamu di sini sekarang. Pesan ini akan otomatis muncul selama 10 detik pada tanggal 25 November 2026!",
