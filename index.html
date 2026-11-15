@@ -221,30 +221,27 @@ footer b{color:var(--gold)}
 @keyframes initSpin{to{transform:rotate(360deg)}}
 
 /* ===== POP-UP PENGUMUMAN TERJADWAL (10 DETIK) ===== */
-.popup-overlay{position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.78);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px;animation:fadePopup .3s ease}
+.popup-overlay{position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.8);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px}
 .popup-overlay.tampil{display:flex}
-@keyframes fadePopup{from{opacity:0}to{opacity:1}}
-.popup-box{position:relative;max-width:460px;width:100%;background:linear-gradient(170deg,#161616 0,#0b0b0b 100%);color:#fff;border:1px solid rgba(255,255,255,.15);border-top:5px solid var(--orange);border-radius:16px;padding:32px 24px 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.75);animation:zoomPopup .35s cubic-bezier(.22,1,.36,1)}
-@keyframes zoomPopup{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
-.popup-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:18px;font-weight:900;line-height:1;cursor:pointer;display:grid;place-items:center;transition:background .2s,transform .2s}
-.popup-close:hover{background:var(--orange);border-color:var(--gold);transform:rotate(90deg)}
+.popup-box{position:relative;max-width:460px;width:100%;background:linear-gradient(170deg,#161616 0,#0b0b0b 100%);color:#fff;border:1px solid rgba(255,255,255,.15);border-top:5px solid var(--orange);border-radius:16px;padding:32px 24px 24px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.75)}
+.popup-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font-size:20px;font-weight:900;line-height:1;cursor:pointer;display:grid;place-items:center}
+.popup-close:hover{background:var(--orange);border-color:var(--gold)}
 .popup-badge{display:inline-block;background:var(--gold);color:#000;font-weight:900;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:12px}
-.popup-box h3{margin:0 0 10px;font-size:22px;color:#fff;text-transform:uppercase;letter-spacing:.5px}
+.popup-box h3{margin:0 0 10px;font-size:22px;color:#fff;text-transform:uppercase}
 .popup-box p{margin:0 0 20px;font-size:14.5px;color:#d6deef;line-height:1.6}
 .popup-timer-wrap{background:rgba(255,255,255,.12);height:5px;border-radius:4px;overflow:hidden;margin-bottom:8px}
 .popup-timer-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--orange),var(--gold));transition:width 1s linear}
 .popup-timer-txt{font-size:11.5px;color:#9aa6c0}
 
 /* ===== BUTTON TERSEMBUNYI & MODAL KATA SANDI ===== */
-.secret-trigger{background:transparent;border:0;color:rgba(255,255,255,.45);font-size:13px;cursor:pointer;padding:2px 6px;margin-left:4px;vertical-align:middle;transition:color .25s}
+.secret-trigger{background:transparent;border:0;color:rgba(255,255,255,.35);font-size:16px;cursor:pointer;padding:4px 10px;margin-left:2px;vertical-align:middle}
 .secret-trigger:hover,.secret-trigger:focus{color:var(--gold);outline:none}
-.pass-overlay{position:fixed;inset:0;z-index:9995;background:rgba(0,0,0,.82);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px}
+.pass-overlay{position:fixed;inset:0;z-index:9995;background:rgba(0,0,0,.84);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px}
 .pass-overlay.tampil{display:flex}
-.pass-box{position:relative;max-width:360px;width:100%;background:#121212;color:#fff;border:1px solid rgba(255,255,255,.16);border-top:4px solid var(--gold);border-radius:14px;padding:26px 22px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.7)}
+.pass-box{max-width:360px;width:100%;background:#121212;color:#fff;border:1px solid rgba(255,255,255,.16);border-top:4px solid var(--gold);border-radius:14px;padding:26px 22px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.7)}
 .pass-box h4{margin:0 0 6px;font-size:18px}
 .pass-box p{margin:0 0 16px;font-size:13px;color:#b8c2d8}
 .pass-input{width:100%;padding:11px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.22);background:#1e1e1e;color:#fff;font-size:14px;text-align:center;margin-bottom:10px}
-.pass-input:focus{outline:none;border-color:var(--gold)}
 .pass-err{color:#ff7b7b;font-size:12px;min-height:16px;margin-bottom:10px}
 .pass-btns{display:flex;gap:8px;justify-content:center}
 .pass-submit{background:var(--orange);color:#fff;border:0;border-radius:20px;padding:9px 20px;font-weight:900;font-size:12px;text-transform:uppercase;cursor:pointer}
@@ -434,6 +431,7 @@ var ADMIN_KODE = "xf2026";
 </main>
 
 <footer>Develop by <b>Divisi Hubungan Masyarakat</b> &middot; &copy; <span id="thn"></span> Kelas X F</footer>
+
 <!-- POP-UP PENGUMUMAN -->
 <div class="popup-overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupJudul">
   <div class="popup-box">
@@ -461,8 +459,8 @@ var ADMIN_KODE = "xf2026";
 </div>
 
 <footer>
-  Develop by <b>Divisi Hubungan Masyarakat</b> &middot; &copy; <span id="thn"></span> Kelas X F
-  <button type="button" class="secret-trigger" id="btnRahasia" aria-label="Akses khusus" title="">&bull;</button>
+  Develop by <b>Divisi Hubungan Masyarakat</b> &middot; &copy; <span id="thn"></span> <span id="footerKelas" style="cursor:pointer">Kelas X F</span>
+  <button type="button" class="secret-trigger" id="btnRahasia" aria-label="Akses khusus">&bull;</button>
 </footer>
 
 <script>
@@ -1322,6 +1320,128 @@ var PENGUMUMAN_CFG = {
   }
 
   btnSecret.addEventListener("click", bukaModalSandi);
+  btnBatal.addEventListener("click", tutupModalSandi);
+  btnMasuk.addEventListener("click", cekSandi);
+  passInput.addEventListener("keydown", function(e){
+    if (e.key === "Enter") cekSandi();
+    if (e.key === "Escape") tutupModalSandi();
+  });
+  passOv.addEventListener("click", function(e){
+    if (e.target === passOv) tutupModalSandi();
+  });
+})();
+</script>
+<script>
+/* ============================================================
+   PENGATURAN POP-UP PENGUMUMAN & BUTTON TERSEMBUNYI
+   ============================================================ */
+var PENGUMUMAN_CFG = {
+  previewSekarang: true,       // Ubah jadi false kalau sudah selesai tes agar baru muncul tanggal 25
+  tanggalTampil: "2026-11-25", // Muncul otomatis pada tanggal 25 November 2026
+  judul: "Pengumuman Penting Kelas X F",
+  isi: "Tulis isi pengumuman kamu di sini sekarang. Pesan ini akan otomatis muncul saat tanggal 25 nanti!",
+  durasiDetik: 10,
+
+  // Pengaturan Button Tersembunyi
+  kataSandi: "xf2026",
+  urlTujuan: "https://contoh-web-lain.pages.dev"
+};
+
+(function(){
+  var ov = document.getElementById("popupOverlay");
+  var btnX = document.getElementById("btnTutupPopup");
+  var bar = document.getElementById("popupBar");
+  var txt = document.getElementById("popupCountdown");
+  var timerInterval = null;
+
+  document.getElementById("popupJudul").textContent = PENGUMUMAN_CFG.judul;
+  document.getElementById("popupIsi").textContent = PENGUMUMAN_CFG.isi;
+
+  function tutupPopup(){
+    ov.classList.remove("tampil");
+    if (timerInterval) clearInterval(timerInterval);
+  }
+
+  function mulaiPopup(){
+    var sisa = PENGUMUMAN_CFG.durasiDetik;
+    ov.classList.add("tampil");
+    bar.style.width = "100%";
+    txt.textContent = "Menutup otomatis dalam " + sisa + " detik...";
+
+    setTimeout(function(){
+      bar.style.width = ((sisa - 1) / PENGUMUMAN_CFG.durasiDetik * 100) + "%";
+    }, 50);
+
+    timerInterval = setInterval(function(){
+      sisa--;
+      if (sisa <= 0) {
+        tutupPopup();
+      } else {
+        txt.textContent = "Menutup otomatis dalam " + sisa + " detik...";
+        bar.style.width = ((sisa - 1) / PENGUMUMAN_CFG.durasiDetik * 100) + "%";
+      }
+    }, 1000);
+  }
+
+  btnX.addEventListener("click", tutupPopup);
+  ov.addEventListener("click", function(e){
+    if (e.target === ov) tutupPopup();
+  });
+
+  var d = new Date();
+  var hariIni = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
+
+  if (PENGUMUMAN_CFG.previewSekarang || hariIni === PENGUMUMAN_CFG.tanggalTampil) {
+    setTimeout(mulaiPopup, 800);
+  }
+
+  /* --- BUTTON TERSEMBUNYI (Klik titik • atau ketuk tulisan "Kelas X F" di footer 3x) --- */
+  var btnSecret = document.getElementById("btnRahasia");
+  var footerKelas = document.getElementById("footerKelas");
+  var passOv = document.getElementById("passOverlay");
+  var passInput = document.getElementById("passInput");
+  var passErr = document.getElementById("passErr");
+  var btnMasuk = document.getElementById("btnMasukPass");
+  var btnBatal = document.getElementById("btnBatalPass");
+
+  function bukaModalSandi(){
+    passInput.value = "";
+    passErr.textContent = "";
+    passOv.classList.add("tampil");
+    setTimeout(function(){ passInput.focus(); }, 100);
+  }
+
+  function tutupModalSandi(){
+    passOv.classList.remove("tampil");
+  }
+
+  function cekSandi(){
+    if (passInput.value.trim() === PENGUMUMAN_CFG.kataSandi) {
+      tutupModalSandi();
+      window.open(PENGUMUMAN_CFG.urlTujuan, "_blank", "noopener,noreferrer");
+    } else {
+      passErr.textContent = "Kata sandi salah!";
+      passInput.value = "";
+      passInput.focus();
+    }
+  }
+
+  btnSecret.addEventListener("click", bukaModalSandi);
+
+  // Jalan pintas di HP: ketuk tulisan "Kelas X F" di footer 3 kali cepat
+  var tapFooter = 0, tapFooterTimer = null;
+  if (footerKelas) {
+    footerKelas.addEventListener("click", function(){
+      tapFooter++;
+      clearTimeout(tapFooterTimer);
+      tapFooterTimer = setTimeout(function(){ tapFooter = 0; }, 1500);
+      if (tapFooter >= 3) {
+        tapFooter = 0;
+        bukaModalSandi();
+      }
+    });
+  }
+
   btnBatal.addEventListener("click", tutupModalSandi);
   btnMasuk.addEventListener("click", cekSandi);
   passInput.addEventListener("keydown", function(e){
