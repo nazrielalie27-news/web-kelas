@@ -1235,46 +1235,87 @@ var MAINT_TAB_NAME = "Sheet1";
 })();
 
 /* ============================================================
-   PENGATURAN POP-UP PENGUMUMAN & BUTTON KOTAK HGN 2026
+   PENGATURAN POP-UP PENGUMUMAN & BUTTON HGN 2026 VIA GOOGLE SHEETS
    ============================================================ */
 var PENGUMUMAN_CFG = {
-  previewSekarang: true,       // Ubah jadi false kalau sudah selesai tes agar baru muncul tgl 25
-  tanggalTampil: "2026-11-25", // Muncul otomatis pada tanggal 25 November 2026
-  judul: "Selamat Hari Guru Nasional 2026",
-  isi: "Tulis isi pengumuman kamu di sini sekarang. Pesan ini akan otomatis muncul selama 10 detik pada tanggal 25 November 2026!",
-  durasiDetik: 10,
+  sheetId: "1a4oJQ7m7QUdsNKNmN-uFfLGnumUunq0WtO1QywKyGq8",
+  tabName: "PENGUMUMAN",
 
-  // Pengaturan Button Kotak HGN 2026
-  kataSandi: "xf2026", // Ganti kata sandi untuk tombol HGN 2026
-  urlTujuan: "https://hgn-xf-2026.pages.dev" // Ganti dengan link website tujuan
+  // Pengaturan cadangan (dipakai otomatis jika Google Sheets belum diisi / offline)
+  modePopup: "JADWAL",
+  tanggalTampil: "2026-11-25",
+  judul: "Selamat Hari Guru Nasional 2026",
+  isi: "Terima kasih Bapak/Ibu Guru atas ilmu dan bimbingannya.",
+  durasiDetik: 10,
+  tampilTombol: true,
+  namaTombol: "HGN 2026",
+  kataSandi: "xf2026",
+  urlTujuan: "https://contoh-web-hgn.pages.dev"
 };
 
 (function(){
+  var aktifCfg = Object.assign({}, PENGUMUMAN_CFG);
+  var popupSudahJalan = false;
+
   var ov = document.getElementById("popupOverlay");
   var btnX = document.getElementById("btnTutupPopup");
   var bar = document.getElementById("popupBar");
   var txt = document.getElementById("popupCountdown");
   var timerInterval = null;
 
-  document.getElementById("popupJudul").textContent = PENGUMUMAN_CFG.judul;
-  document.getElementById("popupIsi").textContent = PENGUMUMAN_CFG.isi;
+  var btnHgn = document.getElementById("btnHgn2026");
+  var hgnWrap = btnHgn ? btnHgn.parentElement : null;
+  var passOv = document.getElementById("passOverlay");
+  var passJudul = document.getElementById("passJudul");
+  var passInput = document.getElementById("passInput");
+  var passErr = document.getElementById("passErr");
+  var btnMasuk = document.getElementById("btnMasukPass");
+  var btnBatal = document.getElementById("btnBatalPass");
+  var btnClosePass = document.getElementById("btnClosePass");
+
+  function pad2(n){ return ("0" + n).slice(-2); }
+
+  function parseTanggalSheet(cell){
+    if (!cell) return "";
+    var rawV = String(cell.v !== null && cell.v !== undefined ? cell.v : "").trim();
+    // Tangani format Date(YYYY,M,D) bawaan Google Sheets (bulan dimulai dari 0)
+    var mDate = rawV.match(/^Date\((\d+),(\d+),(\d+)/);
+    if (mDate) {
+      return mDate[1] + "-" + pad2(parseInt(mDate[2], 10) + 1) + "-" + pad2(parseInt(mDate[3], 10));
+    }
+    var teks = String(cell.f || rawV).trim();
+    var mIso = teks.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/);
+    if (mIso) return mIso[1] + "-" + pad2(mIso[2]) + "-" + pad2(mIso[3]);
+    var mDmy = teks.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
+    if (mDmy) return mDmy[3] + "-" + pad2(mDmy[2]) + "-" + pad2(mDmy[1]);
+    return teks;
+  }
 
   function tutupPopup(){
-    ov.classList.remove("tampil");
+    if (ov) ov.classList.remove("tampil");
     if (timerInterval) clearInterval(timerInterval);
   }
 
   function mulaiPopup(){
+    if (!ov || popupSudahJalan) return;
     var maint = document.getElementById("maintOverlay");
     if (maint && maint.classList.contains("aktif")) return;
 
-    var sisa = PENGUMUMAN_CFG.durasiDetik;
+    popupSudahJalan = true;
+    var durasi = parseInt(aktifCfg.durasiDetik, 10) || 10;
+    var sisa = durasi;
+
+    document.getElementById("popupJudul").textContent = aktifCfg.judul;
+    document.getElementById("popupIsi").textContent = aktifCfg.isi;
+
     ov.classList.add("tampil");
+    bar.style.transition = "none";
     bar.style.width = "100%";
     txt.textContent = "Menutup otomatis dalam " + sisa + " detik...";
 
     setTimeout(function(){
-      bar.style.width = ((sisa - 1) / PENGUMUMAN_CFG.durasiDetik * 100) + "%";
+      bar.style.transition = "width 1s linear";
+      bar.style.width = ((sisa - 1) / durasi * 100) + "%";
     }, 50);
 
     timerInterval = setInterval(function(){
@@ -1283,33 +1324,83 @@ var PENGUMUMAN_CFG = {
         tutupPopup();
       } else {
         txt.textContent = "Menutup otomatis dalam " + sisa + " detik...";
-        bar.style.width = ((sisa - 1) / PENGUMUMAN_CFG.durasiDetik * 100) + "%";
+        bar.style.width = ((sisa - 1) / durasi * 100) + "%";
       }
     }, 1000);
   }
 
-  btnX.addEventListener("click", tutupPopup);
-  ov.addEventListener("click", function(e){
+  function terapkanPengaturan(){
+    // 1. Atur tampilan & judul tombol HGN 2026
+    if (btnHgn) {
+      btnHgn.textContent = aktifCfg.namaTombol || "HGN 2026";
+      if (hgnWrap) hgnWrap.style.display = aktifCfg.tampilTombol ? "flex" : "none";
+    }
+    if (passJudul) {
+      passJudul.textContent = "🔒 " + (aktifCfg.namaTombol || "HGN 2026");
+    }
+
+    // 2. Cek jadwal atau mode aktif pop-up
+    var d = new Date();
+    var hariIni = d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+    var mode = String(aktifCfg.modePopup || "").trim().toUpperCase();
+
+    if (mode === "TRUE" || mode === "YA" || mode === "1") {
+      setTimeout(mulaiPopup, 800);
+    } else if (mode === "JADWAL" && hariIni === aktifCfg.tanggalTampil) {
+      setTimeout(mulaiPopup, 800);
+    }
+  }
+
+  function muatDariSheet(){
+    var cbName = "_cbPengumuman_" + Math.floor(Math.random() * 100000);
+    var script = document.createElement("script");
+    window[cbName] = function(res){
+      delete window[cbName];
+      script.remove();
+      try {
+        var row = res.table.rows[0];
+        if (!row) { terapkanPengaturan(); return; }
+        var c = row.c;
+        var val = function(idx){
+          if (!c[idx]) return "";
+          return c[idx].f || String(c[idx].v !== null && c[idx].v !== undefined ? c[idx].v : "");
+        };
+
+        if (val(0).trim()) aktifCfg.modePopup = val(0).trim().toUpperCase();
+        var tglSheet = parseTanggalSheet(c[1]);
+        if (tglSheet) aktifCfg.tanggalTampil = tglSheet;
+        if (val(2).trim()) aktifCfg.judul = val(2).trim();
+        if (val(3).trim()) aktifCfg.isi = val(3).trim();
+        if (val(4).trim()) aktifCfg.durasiDetik = parseInt(val(4), 10) || 10;
+
+        var tombolRaw = val(5).trim().toUpperCase();
+        if (tombolRaw !== "") {
+          aktifCfg.tampilTombol = (tombolRaw === "TRUE" || tombolRaw === "YA" || tombolRaw === "1");
+        }
+        if (val(6).trim()) aktifCfg.namaTombol = val(6).trim();
+        if (val(7).trim()) aktifCfg.kataSandi = val(7).trim();
+        if (val(8).trim()) aktifCfg.urlTujuan = val(8).trim();
+      } catch(e){
+        console.error("Error baca sheet Pengumuman:", e);
+      }
+      terapkanPengaturan();
+    };
+    script.onerror = function(){
+      delete window[cbName];
+      script.remove();
+      terapkanPengaturan();
+    };
+    script.src = "https://docs.google.com/spreadsheets/d/" + PENGUMUMAN_CFG.sheetId + "/gviz/tq?sheet=" + encodeURIComponent(PENGUMUMAN_CFG.tabName) + "&headers=1&tqx=out:json;responseHandler:" + cbName + "&_t=" + Date.now();
+    document.body.appendChild(script);
+  }
+
+  /* --- EVENT POP-UP PENGUMUMAN --- */
+  if (btnX) btnX.addEventListener("click", tutupPopup);
+  if (ov) ov.addEventListener("click", function(e){
     if (e.target === ov) tutupPopup();
   });
 
-  var d = new Date();
-  var hariIni = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
-
-  if (PENGUMUMAN_CFG.previewSekarang || hariIni === PENGUMUMAN_CFG.tanggalTampil) {
-    setTimeout(mulaiPopup, 1000);
-  }
-
-  /* --- LOGIKA BUTTON KOTAK HGN 2026 & KATA SANDI --- */
-  var btnHgn = document.getElementById("btnHgn2026");
-  var passOv = document.getElementById("passOverlay");
-  var passInput = document.getElementById("passInput");
-  var passErr = document.getElementById("passErr");
-  var btnMasuk = document.getElementById("btnMasukPass");
-  var btnBatal = document.getElementById("btnBatalPass");
-  var btnBatal = document.getElementById("btnBatalPass");
-  var btnClosePass = document.getElementById("btnClosePass");
-
+  /* --- EVENT MODAL KATA SANDI --- */
   function bukaModalSandi(){
     passInput.value = "";
     passErr.textContent = "";
@@ -1322,9 +1413,9 @@ var PENGUMUMAN_CFG = {
   }
 
   function cekSandi(){
-    if (passInput.value.trim() === PENGUMUMAN_CFG.kataSandi) {
+    if (passInput.value.trim() === aktifCfg.kataSandi) {
       tutupModalSandi();
-      window.open(PENGUMUMAN_CFG.urlTujuan, "_blank", "noopener,noreferrer");
+      window.open(aktifCfg.urlTujuan, "_blank", "noopener,noreferrer");
     } else {
       passErr.textContent = "Kata sandi salah!";
       passInput.value = "";
@@ -1333,16 +1424,18 @@ var PENGUMUMAN_CFG = {
   }
 
   if (btnHgn) btnHgn.addEventListener("click", bukaModalSandi);
-  btnBatal.addEventListener("click", tutupModalSandi);
+  if (btnBatal) btnBatal.addEventListener("click", tutupModalSandi);
   if (btnClosePass) btnClosePass.addEventListener("click", tutupModalSandi);
-  btnMasuk.addEventListener("click", cekSandi);
-  passInput.addEventListener("keydown", function(e){
+  if (btnMasuk) btnMasuk.addEventListener("click", cekSandi);
+  if (passInput) passInput.addEventListener("keydown", function(e){
     if (e.key === "Enter") cekSandi();
     if (e.key === "Escape") tutupModalSandi();
   });
-  passOv.addEventListener("click", function(e){
+  if (passOv) passOv.addEventListener("click", function(e){
     if (e.target === passOv) tutupModalSandi();
   });
+
+  muatDariSheet();
 })();
 </script>
 </body>
