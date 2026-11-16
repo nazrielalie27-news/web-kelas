@@ -439,7 +439,7 @@ var ADMIN_KODE = "xf2026";
 
     <!-- BUTTON KOTAK HGN 2026 -->
     <div class="hgn-wrap">
-      <button type="button" class="btn-hgn" id="btnHgn2026">HGN 2026</button>
+      <button type="button" class="btn-hgn" id="btnHgn2026">??????</button>
     </div>
   </div>
 </main>
@@ -473,7 +473,7 @@ var ADMIN_KODE = "xf2026";
   <div class="pass-box">
     <button type="button" class="popup-close" id="btnClosePass" aria-label="Tutup">&times;</button>
     <span class="popup-badge">Akses Terbatas</span>
-    <h4 id="passJudul">🔒 HGN 2026</h4>
+    <h4 id="passJudul">🔒 ??????</h4>
     <p>Masukkan kata sandi untuk melanjutkan ke halaman tujuan.</p>
     <input type="password" class="pass-input" id="passInput" placeholder="Masukkan kata sandi..." autocomplete="off">
     <div class="pass-err" id="passErr"></div>
@@ -1248,6 +1248,7 @@ var PENGUMUMAN_CFG = {
   isi: "Terima kasih Bapak/Ibu Guru atas ilmu dan bimbingannya.",
   durasiDetik: 10,
   tampilTombol: true,
+  namaTombolSebelum: "??????",
   namaTombol: "HGN 2026",
   kataSandi: "xf2026",
   urlTujuan: "https://contoh-web-hgn.pages.dev"
@@ -1330,112 +1331,29 @@ var PENGUMUMAN_CFG = {
   }
 
   function terapkanPengaturan(){
-    // 1. Atur tampilan & judul tombol HGN 2026
+    var d = new Date();
+    var hariIni = d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+    var sudahTanggalnya = aktifCfg.tanggalTampil && (hariIni >= aktifCfg.tanggalTampil);
+    var namaAsli = aktifCfg.namaTombol || "HGN 2026";
+    var teksTombol = sudahTanggalnya ? namaAsli : (aktifCfg.namaTombolSebelum || "??????");
+
+    // 1. Atur tampilan & judul tombol (?????? sebelum tgl 25, otomatis HGN 2026 mulai tgl 25)
     if (btnHgn) {
-      btnHgn.textContent = aktifCfg.namaTombol || "HGN 2026";
+      btnHgn.textContent = teksTombol;
       if (hgnWrap) hgnWrap.style.display = aktifCfg.tampilTombol ? "flex" : "none";
     }
     if (passJudul) {
-      passJudul.textContent = "🔒 " + (aktifCfg.namaTombol || "HGN 2026");
+      passJudul.textContent = "🔒 " + teksTombol;
     }
 
     // 2. Cek jadwal atau mode aktif pop-up
-    var d = new Date();
-    var hariIni = d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
     var mode = String(aktifCfg.modePopup || "").trim().toUpperCase();
-
     if (mode === "TRUE" || mode === "YA" || mode === "1") {
       setTimeout(mulaiPopup, 800);
     } else if (mode === "JADWAL" && hariIni === aktifCfg.tanggalTampil) {
       setTimeout(mulaiPopup, 800);
     }
   }
-
-  function muatDariSheet(){
-    var cbName = "_cbPengumuman_" + Math.floor(Math.random() * 100000);
-    var script = document.createElement("script");
-    window[cbName] = function(res){
-      delete window[cbName];
-      script.remove();
-      try {
-        var row = res.table.rows[0];
-        if (!row) { terapkanPengaturan(); return; }
-        var c = row.c;
-        var val = function(idx){
-          if (!c[idx]) return "";
-          return c[idx].f || String(c[idx].v !== null && c[idx].v !== undefined ? c[idx].v : "");
-        };
-
-        if (val(0).trim()) aktifCfg.modePopup = val(0).trim().toUpperCase();
-        var tglSheet = parseTanggalSheet(c[1]);
-        if (tglSheet) aktifCfg.tanggalTampil = tglSheet;
-        if (val(2).trim()) aktifCfg.judul = val(2).trim();
-        if (val(3).trim()) aktifCfg.isi = val(3).trim();
-        if (val(4).trim()) aktifCfg.durasiDetik = parseInt(val(4), 10) || 10;
-
-        var tombolRaw = val(5).trim().toUpperCase();
-        if (tombolRaw !== "") {
-          aktifCfg.tampilTombol = (tombolRaw === "TRUE" || tombolRaw === "YA" || tombolRaw === "1");
-        }
-        if (val(6).trim()) aktifCfg.namaTombol = val(6).trim();
-        if (val(7).trim()) aktifCfg.kataSandi = val(7).trim();
-        if (val(8).trim()) aktifCfg.urlTujuan = val(8).trim();
-      } catch(e){
-        console.error("Error baca sheet Pengumuman:", e);
-      }
-      terapkanPengaturan();
-    };
-    script.onerror = function(){
-      delete window[cbName];
-      script.remove();
-      terapkanPengaturan();
-    };
-    script.src = "https://docs.google.com/spreadsheets/d/" + PENGUMUMAN_CFG.sheetId + "/gviz/tq?sheet=" + encodeURIComponent(PENGUMUMAN_CFG.tabName) + "&headers=1&tqx=out:json;responseHandler:" + cbName + "&_t=" + Date.now();
-    document.body.appendChild(script);
-  }
-
-  /* --- EVENT POP-UP PENGUMUMAN --- */
-  if (btnX) btnX.addEventListener("click", tutupPopup);
-  if (ov) ov.addEventListener("click", function(e){
-    if (e.target === ov) tutupPopup();
-  });
-
-  /* --- EVENT MODAL KATA SANDI --- */
-  function bukaModalSandi(){
-    passInput.value = "";
-    passErr.textContent = "";
-    passOv.classList.add("tampil");
-    setTimeout(function(){ passInput.focus(); }, 100);
-  }
-
-  function tutupModalSandi(){
-    passOv.classList.remove("tampil");
-  }
-
-  function cekSandi(){
-    if (passInput.value.trim() === aktifCfg.kataSandi) {
-      tutupModalSandi();
-      window.open(aktifCfg.urlTujuan, "_blank", "noopener,noreferrer");
-    } else {
-      passErr.textContent = "Kata sandi salah!";
-      passInput.value = "";
-      passInput.focus();
-    }
-  }
-
-  if (btnHgn) btnHgn.addEventListener("click", bukaModalSandi);
-  if (btnBatal) btnBatal.addEventListener("click", tutupModalSandi);
-  if (btnClosePass) btnClosePass.addEventListener("click", tutupModalSandi);
-  if (btnMasuk) btnMasuk.addEventListener("click", cekSandi);
-  if (passInput) passInput.addEventListener("keydown", function(e){
-    if (e.key === "Enter") cekSandi();
-    if (e.key === "Escape") tutupModalSandi();
-  });
-  if (passOv) passOv.addEventListener("click", function(e){
-    if (e.target === passOv) tutupModalSandi();
-  });
-
-  muatDariSheet();
 })();
 </script>
 </body>
