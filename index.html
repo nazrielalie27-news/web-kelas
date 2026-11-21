@@ -7,8 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-/* ===== PENGUMUMAN LIBUR ===== */
+/* ===== PENGUMUMAN LIBUR & ACARA SEKOLAH ===== */
 .libur-bar{margin:24px 0 0;background:var(--orange);color:#fff;border-radius:12px;padding:16px 20px;text-align:center;font-weight:900;font-size:clamp(16px,3vw,22px)}
+.acara-bar{margin:24px 0 0;background:rgba(255,242,0,.14);border:1px solid rgba(255,242,0,.45);border-left:6px solid var(--gold);color:#fff;border-radius:12px;padding:14px 20px;text-align:center;font-weight:900;font-size:clamp(15px,2.8vw,19px)}
+.acara-bar span{display:block;font-size:12.5px;font-weight:700;color:#e2e8f0;margin-top:3px}
 .libur{padding:36px 20px;text-align:center}
 .libur b{display:block;font-size:clamp(22px,4vw,32px);margin-bottom:6px;color:var(--orange)}
 .libur span{color:var(--muted)}
@@ -81,6 +83,7 @@ tr:last-child td{border-bottom:0}
 .izin{background:var(--warn-bg);color:var(--warn)}
 .alpa{background:var(--bad-bg);color:var(--bad)}
 .dispensasi{background:#efe3ff;color:#6a2fb3}
+.acara{background:var(--warn-bg);color:var(--warn);border:1px solid rgba(245,158,11,.35)}
 .belum{background:var(--line);color:var(--muted)}
 @media (prefers-color-scheme:dark){.dispensasi{background:#2f1d52;color:#d3b8ff}}
 
@@ -160,6 +163,16 @@ footer b{color:var(--gold)}
   font-family: 'Formula1', sans-serif !important;
 }
 
+/* ===== COUNTDOWN HGN 2026 (DI BAWAH SLOGAN, DI ATAS TOMBOL HGN) ===== */
+.hgn-area{margin:28px auto 0;max-width:440px;text-align:center}
+.cd-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-top:4px solid var(--orange);border-radius:14px;padding:18px 16px;box-shadow:0 12px 30px rgba(0,0,0,.45);backdrop-filter:blur(6px)}
+.cd-label{font-size:11.5px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cd-item{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 4px}
+.cd-item b{display:block;font-family:'Formula1',Lato,sans-serif;font-size:clamp(20px,4.5vw,28px);font-weight:900;color:#fff;line-height:1.1}
+.cd-item span{display:block;font-size:10.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#b8c2d8;margin-top:4px}
+.cd-live{font-family:'Formula1',Lato,sans-serif;font-size:14px;font-weight:900;color:var(--gold);letter-spacing:.6px;padding:6px 4px}
+
 /* ===== LINK LAPORAN PRESENSI ===== */
 .laporan-grid{display:grid;gap:16px}
 .laporan{background:var(--card);border-radius:14px;box-shadow:0 4px 16px rgba(0,0,0,.1);border-left:6px solid var(--orange);padding:28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -212,14 +225,14 @@ footer b{color:var(--gold)}
 .profil-top{margin-top:-70px;position:relative;z-index:2}
 
 /* ===== SOSIAL MEDIA & BUTTON KOTAK HGN 2026 DI KEDUA HALAMAN ===== */
-.sosmed-box{margin:48px 0 8px;text-align:center}
+.sosmed-box{margin:42px 0 8px;text-align:center}
 .sosmed-label{font-size:13px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:#e2e8f0;margin:0 0 16px}
 .sosmed-list{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
 .sosmed-btn{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease}
 .sosmed-btn svg{width:22px;height:22px;fill:currentColor}
 .sosmed-btn:hover{transform:translateY(-4px);background:var(--orange);border-color:var(--gold);color:#fff;box-shadow:0 8px 20px rgba(212,0,0,.45)}
 
-.hgn-wrap{margin-top:22px;display:flex;justify-content:center}
+.hgn-wrap{margin-top:14px;display:flex;justify-content:center}
 .btn-hgn{display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.22);border-bottom:3px solid var(--orange);border-radius:10px;padding:12px 28px;font-family:'Formula1',Lato,sans-serif;font-size:13px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);transition:transform .25s ease,background .25s ease,border-color .25s ease}
 .btn-hgn:hover{transform:translateY(-3px);background:var(--orange);border-color:var(--gold);color:#fff;box-shadow:0 10px 24px rgba(212,0,0,.45)}
 
@@ -420,7 +433,28 @@ var ADMIN_KODE = "xf2026";
   </section>
 
   <!-- ============================================================
-       SOSIAL MEDIA & BUTTON HGN 2026 (TAMPIL DI KEDUA HALAMAN)
+       COUNTDOWN HGN 2026 & BUTTON HGN (DI BAWAH SLOGAN, DI ATAS TOMBOL)
+       OTOMATIS HILANG DI TANGGAL 27 NOVEMBER
+       ============================================================ -->
+  <div class="hgn-area" id="hgnArea">
+    <div class="cd-box" id="cdBox">
+      <div class="cd-label" id="cdLabel">⏳ Menuju Hari Guru Nasional 2026</div>
+      <div class="cd-grid" id="cdGrid">
+        <div class="cd-item"><b id="cdHari">00</b><span>Hari</span></div>
+        <div class="cd-item"><b id="cdJam">00</b><span>Jam</span></div>
+        <div class="cd-item"><b id="cdMenit">00</b><span>Menit</span></div>
+        <div class="cd-item"><b id="cdDetik">00</b><span>Detik</span></div>
+      </div>
+      <div class="cd-live" id="cdLive" style="display:none">🎉 Selamat Hari Guru Nasional 2026!</div>
+    </div>
+
+    <div class="hgn-wrap">
+      <button type="button" class="btn-hgn" id="btnHgn2026">??????</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SOSIAL MEDIA (TAMPIL DI KEDUA HALAMAN)
        ============================================================ -->
   <div class="sosmed-box">
     <p class="sosmed-label">Follow Us on Social Media</p>
@@ -441,11 +475,6 @@ var ADMIN_KODE = "xf2026";
       <a class="sosmed-btn" href="https://whatsapp.com/channel/kode_channel_kelas" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Channel" title="WhatsApp Channel">
         <svg viewBox="0 0 24 24"><path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.458 3.475 1.328 4.988L2 22l5.184-1.359a9.927 9.927 0 0 0 4.847 1.258h.004c5.515 0 9.969-4.454 9.969-9.969A9.937 9.937 0 0 0 19.08 4.92 9.914 9.914 0 0 0 12.031 2zm5.818 14.25c-.244.688-1.418 1.316-1.969 1.398-.504.075-1.141.107-1.841-.116-.424-.135-.969-.316-1.666-.617-2.931-1.266-4.845-4.219-4.991-4.414-.146-.195-1.191-1.584-1.191-3.021 0-1.437.752-2.144 1.019-2.437.267-.293.583-.366.778-.366.195 0 .39.002.56.01.18.009.421-.068.659.503.244.586.829 2.023.902 2.169.073.146.122.317.024.512-.098.195-.146.317-.293.488-.146.171-.307.381-.439.512-.146.146-.299.304-.128.597.171.293.758 1.251 1.628 2.027 1.119.998 2.062 1.307 2.355 1.453.293.146.464.122.635-.073.171-.195.732-.854.927-1.147.195-.293.39-.244.659-.146.268.098 1.708.805 2 .952.293.146.488.22.561.342.073.122.073.707-.171 1.395z"/></svg>
       </a>
-    </div>
-
-    <!-- BUTTON KOTAK HGN 2026 (?????? SEBELUM 25 NOV) -->
-    <div class="hgn-wrap">
-      <button type="button" class="btn-hgn" id="btnHgn2026">??????</button>
     </div>
   </div>
 </main>
@@ -586,10 +615,25 @@ var LIBUR_TANGGAL=[
 ];
 var LIBUR_SEMUA=false;
 
+/* ===== ACARA SEKOLAH (JAM PELAJARAN KOSONG / DIALIHKAN) =====
+   Gunakan bagian ini ketika sekolah tidak libur (Presensi Murid tetap jalan),
+   tetapi seluruh atau sebagian jam pelajaran dikosongkan untuk acara sekolah.
+   - tgl : "YYYY-MM-DD"
+   - jam : "SEMUA" (semua jam pelajaran dialihkan ke acara)
+           ATAU [1, 2] (hanya jam pelajaran ke-1 dan ke-2 yang kosong, jam ke-3 dst tetap belajar)
+   - ket : Nama acara sekolah
+*/
+var ACARA_SEKOLAH = [
+  // Contoh 1 (hapus tanda // di depan baris bawah untuk mengaktifkan):
+  // {tgl:"2026-11-25", jam:"SEMUA", ket:"Upacara & Peringatan Hari Guru Nasional"},
+  // Contoh 2 (hanya jam pelajaran ke-1 dan ke-2 kosong):
+  // {tgl:"2026-11-26", jam:[1, 2], ket:"Sosialisasi Sekolah di Lapangan"}
+];
+
 /* ===== RENDER HALAMAN & PRESENSI OTOMATIS ===== */
 var HARI=["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
 var BULAN=["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-var LABEL={hadir:"Hadir",sakit:"Sakit",izin:"Izin",alpa:"Alpa",belum:"Belum masuk jam",dispensasi:"Dispensasi"};
+var LABEL={hadir:"Hadir",sakit:"Sakit",izin:"Izin",alpa:"Alpa",belum:"Belum masuk jam",dispensasi:"Dispensasi",acara:"Acara Sekolah"};
 
 function $(id){return document.getElementById(id)}
 function pad(n){return ("0"+n).slice(-2)}
@@ -603,21 +647,74 @@ var now=new Date(), besok=new Date(now.getTime()+864e5);
 var jadwalHariIni=(DATA.jadwal||{})[now.getDay()]||[];
 var jadwalBesok=(DATA.jadwal||{})[besok.getDay()]||[];
 var totMurid=DATA.jumlahMurid||45;
+var daftarGuruTerakhir=jadwalHariIni.map(function(x){return {jam:x[0],mapel:x[1],guru:x[2],status:"belum"}});
 
 $("tgl").textContent=tgl(now);
 $("thn").textContent=now.getFullYear();
 
+function cekAcara(d){
+  var k=kunciTgl(d);
+  for(var i=0;i<ACARA_SEKOLAH.length;i++){
+    if(ACARA_SEKOLAH[i].tgl===k) return ACARA_SEKOLAH[i];
+  }
+  return null;
+}
+
+function isJamAcara(acara, jamKe){
+  if(!acara) return false;
+  var j=acara.jam;
+  if(Array.isArray(j)) return j.indexOf(jamKe)>-1;
+  var s=String(j||"SEMUA").trim().toUpperCase();
+  if(s==="SEMUA"||s==="ALL"||s==="") return true;
+  var nums=s.split(/[^0-9]+/).filter(Boolean).map(function(n){return parseInt(n,10)});
+  return nums.indexOf(jamKe)>-1;
+}
+
 function renderGuru(daftar){
-  var sesiGuru=daftar.filter(function(x){return x.guru&&x.guru!=="-"});
+  daftarGuruTerakhir = daftar;
+  var acaraIni = cekAcara(now);
+  var olahan = daftar.map(function(x, idx){
+    var kosongAcara = isJamAcara(acaraIni, idx + 1);
+    return {
+      jam: x.jam,
+      mapel: x.mapel,
+      guru: x.guru,
+      status: x.status,
+      isAcara: kosongAcara,
+      acaraKet: kosongAcara ? (acaraIni.ket || "Acara Sekolah") : ""
+    };
+  });
+
+  var sesiGuru=olahan.filter(function(x){return x.guru&&x.guru!=="-"&&!x.isAcara});
   var gHadir=sesiGuru.filter(function(x){return x.status==="hadir"}).length;
   var belum=sesiGuru.filter(function(x){return x.status==="belum"}).length;
-  $("guruSub").textContent=tgl(now)+" — "+gHadir+" dari "+sesiGuru.length+" guru hadir"+(belum?" ("+belum+" belum masuk jam)":"");
-  $("guruBody").innerHTML=daftar.length?daftar.map(function(x){
+
+  if(acaraIni && sesiGuru.length===0){
+    $("guruSub").textContent=tgl(now)+" — Jam pelajaran dialihkan untuk acara sekolah ("+(acaraIni.ket||"Acara Sekolah")+")";
+  } else {
+    $("guruSub").textContent=tgl(now)+" — "+gHadir+" dari "+sesiGuru.length+" guru hadir"+(belum?" ("+belum+" belum masuk jam)":"")+(acaraIni?" · Sebagian jam dialihkan acara sekolah":"");
+  }
+
+  $("guruBody").innerHTML=olahan.length?olahan.map(function(x){
+    if(x.isAcara){
+      var guruAsli = (x.guru && x.guru!=="-") ? '<span style="text-decoration:line-through;opacity:.6">'+esc(x.guru)+'</span>' : '-';
+      return "<tr><td>"+esc(x.jam)+"</td><td>"+esc(x.mapel)+'<div style="font-size:12px;color:var(--muted)">Acara: '+esc(x.acaraKet)+'</div></td><td>'+guruAsli+'</td><td><span class="badge acara">Acara Sekolah</span></td></tr>';
+    }
     var statusCell=(!x.guru||x.guru==="-")?'<span class="badge hadir">Kegiatan Kelas</span>':badge(x.status);
     return "<tr><td>"+esc(x.jam)+"</td><td>"+esc(x.mapel)+"</td><td>"+esc(x.guru)+"</td><td>"+statusCell+"</td></tr>";
   }).join(""):'<tr><td colspan="4">Tidak ada jadwal pelajaran hari ini.</td></tr>';
+
   var kartu=document.querySelectorAll("#ringkasan .n");
-  if(kartu[0])kartu[0].textContent=gHadir+"/"+sesiGuru.length;
+  var subKartu=document.querySelectorAll("#ringkasan .s");
+  if(kartu[0]){
+    if(acaraIni && sesiGuru.length===0){
+      kartu[0].textContent="Acara";
+      if(subKartu[0]) subKartu[0].textContent="jam dialihkan";
+    } else {
+      kartu[0].textContent=gHadir+"/"+sesiGuru.length;
+      if(subKartu[0]) subKartu[0].textContent="hari ini";
+    }
+  }
 }
 
 function renderMurid(tidak, dispen, hit){
@@ -649,13 +746,24 @@ $("ringkasan").innerHTML=[
   ["#struktur",(DATA.struktur||[]).length,"Divisi","struktur kelas"]
 ].map(function(c){return '<a href="'+c[0]+'"><span class="n">'+c[1]+'</span><span class="t">'+c[2]+'</span><span class="s">'+c[3]+'</span><span class="more">Lihat</span></a>'}).join("");
 
-renderGuru(jadwalHariIni.map(function(x){return {jam:x[0],mapel:x[1],guru:x[2],status:"belum"}}));
+renderGuru(daftarGuruTerakhir);
 renderMurid([],[],{sakit:0,izin:0,alpa:0});
 
-$("jadwalSub").textContent=tgl(besok);
-$("jadwalBody").innerHTML=jadwalBesok.length?jadwalBesok.map(function(r){
-  return "<tr><td>"+esc(r[0])+"</td><td>"+esc(r[1])+"</td><td>"+esc(r[2])+"</td></tr>";
-}).join(""):'<tr><td colspan="3">Besok libur, tidak ada pelajaran.</td></tr>';
+function renderJadwalBesok(){
+  $("jadwalSub").textContent=tgl(besok);
+  if(ketEsok){
+    $("jadwalBody").innerHTML='<tr><td colspan="3"><b>Besok libur:</b> '+esc(ketEsok)+'</td></tr>';
+    if(kartu[2])kartu[2].textContent="Libur";
+    return;
+  }
+  var acaraEsok = cekAcara(besok);
+  $("jadwalBody").innerHTML=jadwalBesok.length?jadwalBesok.map(function(r, idx){
+    var kosongBesok = isJamAcara(acaraEsok, idx + 1);
+    var mapelCell = esc(r[1]) + (kosongBesok ? ' <span class="badge acara">Acara: '+esc(acaraEsok.ket||'Acara Sekolah')+'</span>' : '');
+    var guruCell = kosongBesok ? '<span style="text-decoration:line-through;opacity:.6">'+esc(r[2])+'</span>' : esc(r[2]);
+    return "<tr><td>"+esc(r[0])+"</td><td>"+mapelCell+"</td><td>"+guruCell+"</td></tr>";
+  }).join(""):'<tr><td colspan="3">Besok libur, tidak ada pelajaran.</td></tr>';
+}
 
 $("strukturBox").innerHTML=(DATA.struktur||[]).map(function(d){
   return '<div class="divisi"><h3>'+esc(d.divisi)+'</h3><div class="orang">'+d.orang.map(function(o){
@@ -674,6 +782,21 @@ var ketIni=LIBUR_SEMUA?"Libur":cekLibur(now);
 var ketEsok=cekLibur(besok);
 var kartu=document.querySelectorAll("#ringkasan .n");
 
+renderJadwalBesok();
+
+function tampilkanBannerAcaraHariIni(){
+  var lama = document.getElementById("acaraBar");
+  if(lama) lama.remove();
+  if(ketIni) return;
+  var acaraIni = cekAcara(now);
+  if(acaraIni){
+    var infoJam = (String(acaraIni.jam||"SEMUA").toUpperCase()==="SEMUA")
+      ? "Seluruh jam pelajaran dialihkan (Presensi murid tetap berjalan)"
+      : "Jam pelajaran ke-" + (Array.isArray(acaraIni.jam)?acaraIni.jam.join(", "):acaraIni.jam) + " dikosongkan";
+    $("ringkasan").insertAdjacentHTML("afterend",'<div class="acara-bar" id="acaraBar">📢 Acara Sekolah Hari Ini: '+esc(acaraIni.ket||"Kegiatan Sekolah")+'<span>'+esc(infoJam)+'</span></div>');
+  }
+}
+
 if(ketIni){
   $("ringkasan").insertAdjacentHTML("afterend",'<div class="libur-bar">🎉 Hari ini libur: '+ketIni+'</div>');
   ["guru","murid"].forEach(function(id){
@@ -684,10 +807,8 @@ if(ketIni){
   });
   if(kartu[0])kartu[0].textContent="Libur";
   if(kartu[1])kartu[1].textContent="Libur";
-}
-if(ketEsok){
-  $("jadwalBody").innerHTML='<tr><td colspan="3"><b>Besok libur:</b> '+ketEsok+'</td></tr>';
-  if(kartu[2])kartu[2].textContent="Libur";
+} else {
+  tampilkanBannerAcaraHariIni();
 }
 
 /* ===== AMBIL DATA OTOMATIS DARI GOOGLE SHEETS ===== */
@@ -1142,7 +1263,7 @@ var MAINT_TAB_NAME = "Sheet1";
 
 /* ===== ANIMASI FADE-IN OTOMATIS SAAT GULIR LAYAR ===== */
 (function(){
-  var targetSelector = "#ringkasan a, main section, .panel, .laporan, .wali, .divisi, .pj .p, .bersama, .slogan";
+  var targetSelector = "#ringkasan a, main section, .panel, .laporan, .wali, .divisi, .pj .p, .bersama, .slogan, .hgn-area";
   var elemen = document.querySelectorAll(targetSelector);
 
   if (!("IntersectionObserver" in window)) return;
@@ -1236,7 +1357,8 @@ var MAINT_TAB_NAME = "Sheet1";
 })();
 
 /* ============================================================
-   PENGATURAN POP-UP PENGUMUMAN & BUTTON HGN 2026 VIA GOOGLE SHEETS
+   PENGATURAN COUNTDOWN, POP-UP PENGUMUMAN & BUTTON HGN 2026
+   OTOMATIS HILANG DI TANGGAL 27 NOVEMBER + MODE PREVIEW
    ============================================================ */
 var PENGUMUMAN_CFG = {
   sheetId: "1a4oJQ7m7QUdsNKNmN-uFfLGnumUunq0WtO1QywKyGq8",
@@ -1244,7 +1366,8 @@ var PENGUMUMAN_CFG = {
 
   // Pengaturan cadangan (dipakai otomatis jika Google Sheets belum diisi / offline)
   modePopup: "JADWAL",
-  tanggalTampil: "2026-11-25",
+  tanggalTampil: "2026-11-25",   // Mulai HGN (Countdown berhenti & Pop-up muncul)
+  tanggalSelesai: "2026-11-27",  // Otomatis hilang mulai tanggal ini (tanpa edit kode)
   judul: "Selamat Hari Guru Nasional 2026",
   isi: "Terima kasih Bapak/Ibu Guru atas ilmu dan bimbingannya.",
   durasiDetik: 10,
@@ -1259,12 +1382,23 @@ var PENGUMUMAN_CFG = {
   var aktifCfg = Object.assign({}, PENGUMUMAN_CFG);
   var sudahWaktunyaHgn = false;
   var popupSudahJalan = false;
+  var cdInterval = null;
+  var waktuOffsetMs = 0; // Digunakan khusus saat mode ?preview=... aktif
 
   var ov = document.getElementById("popupOverlay");
   var btnX = document.getElementById("btnTutupPopup");
   var bar = document.getElementById("popupBar");
   var txt = document.getElementById("popupCountdown");
   var timerInterval = null;
+
+  var hgnArea = document.getElementById("hgnArea");
+  var cdLabel = document.getElementById("cdLabel");
+  var cdGrid = document.getElementById("cdGrid");
+  var cdLive = document.getElementById("cdLive");
+  var elHari = document.getElementById("cdHari");
+  var elJam = document.getElementById("cdJam");
+  var elMenit = document.getElementById("cdMenit");
+  var elDetik = document.getElementById("cdDetik");
 
   var btnHgn = document.getElementById("btnHgn2026");
   var hgnWrap = btnHgn ? btnHgn.parentElement : null;
@@ -1291,6 +1425,32 @@ var PENGUMUMAN_CFG = {
     var mDmy = teks.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
     if (mDmy) return mDmy[3] + "-" + pad2(mDmy[2]) + "-" + pad2(mDmy[1]);
     return teks;
+  }
+
+  function parseWaktuLokal(tglStr){
+    var m = String(tglStr || "").match(/^(\d{4})-(\d{1,2})-(\d{1,2})/);
+    if (!m) return null;
+    return new Date(parseInt(m[1], 10), parseInt(m[2], 10) - 1, parseInt(m[3], 10), 0, 0, 0, 0);
+  }
+
+  /* --- CEK PARAMETER ?preview=... DI URL --- */
+  var previewMode = "";
+  try {
+    var mPrev = window.location.href.match(/[?&#]preview=([^&#]+)/i);
+    if (mPrev) previewMode = decodeURIComponent(mPrev[1]).trim().toLowerCase();
+  } catch(e){}
+
+  function tampilkanBadgePreview(mode){
+    var labelMap = {
+      countdown: "Sebelum Tgl 25 (Countdown Berjalan)",
+      detik: "10 Detik Menuju HGN (Transisi Otomatis)",
+      hgn: "Saat HGN Tgl 25-26 (Pop-up & Tombol Aktif)",
+      selesai: "Tgl 27 ke Atas (Otomatis Hilang)"
+    };
+    var b = document.createElement("div");
+    b.style.cssText = "position:fixed;bottom:14px;left:14px;z-index:9997;background:rgba(13,13,13,.94);color:#fff;border:1px solid #FFF200;border-radius:30px;padding:8px 14px;font-size:12px;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(0,0,0,.5)";
+    b.innerHTML = '<span>👁️ <b>Preview:</b> ' + (labelMap[mode] || mode) + '</span><button type="button" onclick="location.href=location.pathname" style="background:#D40000;color:#fff;border:0;border-radius:20px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer">Keluar</button>';
+    document.body.appendChild(b);
   }
 
   function tutupPopup(){
@@ -1331,30 +1491,107 @@ var PENGUMUMAN_CFG = {
     }, 1000);
   }
 
-  function terapkanPengaturan(){
-    var d = new Date();
-    var hariIni = d.getFullYear() + "-" + pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
-    var sudahTanggalnya = aktifCfg.tanggalTampil && (hariIni >= aktifCfg.tanggalTampil);
-    sudahWaktunyaHgn = Boolean(sudahTanggalnya);
-    var namaAsli = aktifCfg.namaTombol || "HGN 2026";
-    var teksTombol = sudahTanggalnya ? namaAsli : (aktifCfg.namaTombolSebelum || "??????");
+  function perbaruiStatusHgn(waktuMulai, waktuSelesai, modePopup){
+    var sekarang = new Date(Date.now() + waktuOffsetMs);
 
-    // 1. Atur tampilan & judul tombol (?????? sebelum tgl 25, otomatis HGN 2026 mulai tgl 25)
+    // 1. SUDAH TANGGAL 27 KE ATAS -> OTOMATIS HILANG SEMUA TANPA EDIT KODE
+    if (waktuSelesai && sekarang >= waktuSelesai) {
+      if (hgnArea) hgnArea.style.display = "none";
+      if (cdInterval) clearInterval(cdInterval);
+      sudahWaktunyaHgn = false;
+      if (modePopup === "TRUE" || modePopup === "YA" || modePopup === "1") {
+        setTimeout(mulaiPopup, 800);
+      }
+      return;
+    }
+
+    if (hgnArea) hgnArea.style.display = "block";
+    var namaAsli = aktifCfg.namaTombol || "HGN 2026";
+    var sisaMs = waktuMulai ? (waktuMulai.getTime() - sekarang.getTime()) : 0;
+
+    // 2. SAAT TANGGAL 25 - 26 NOV (HITUNG MUNDUR SELESAI / MENCAPAI 0)
+    if (sisaMs <= 0) {
+      sudahWaktunyaHgn = true;
+      if (cdInterval) clearInterval(cdInterval);
+
+      if (cdLabel) cdLabel.textContent = "✨ Spesial Hari Guru Nasional";
+      if (cdGrid) cdGrid.style.display = "none";
+      if (cdLive) cdLive.style.display = "block";
+
+      if (btnHgn) {
+        btnHgn.textContent = namaAsli;
+        if (hgnWrap) hgnWrap.style.display = aktifCfg.tampilTombol ? "flex" : "none";
+      }
+      if (passJudul) passJudul.textContent = "🔒 " + namaAsli;
+
+      // Nyambung otomatis ke pop-up pengumuman!
+      if (!popupSudahJalan && (modePopup === "JADWAL" || modePopup === "TRUE" || modePopup === "YA" || modePopup === "1")) {
+        setTimeout(mulaiPopup, 600);
+      }
+      return;
+    }
+
+    // 3. SEBELUM TANGGAL 25 NOV -> COUNTDOWN BERJALAN REAL-TIME
+    sudahWaktunyaHgn = false;
+    var teksSebelum = aktifCfg.namaTombolSebelum || "??????";
     if (btnHgn) {
-      btnHgn.textContent = teksTombol;
+      btnHgn.textContent = teksSebelum;
       if (hgnWrap) hgnWrap.style.display = aktifCfg.tampilTombol ? "flex" : "none";
     }
-    if (passJudul) {
-      passJudul.textContent = "🔒 " + teksTombol;
+    if (passJudul) passJudul.textContent = "🔒 " + teksSebelum;
+
+    if (cdLabel) cdLabel.textContent = "⏳ Menuju Hari Guru Nasional 2026";
+    if (cdGrid) cdGrid.style.display = "grid";
+    if (cdLive) cdLive.style.display = "none";
+
+    var totalDetik = Math.floor(sisaMs / 1000);
+    var hari = Math.floor(totalDetik / 86400);
+    var jam = Math.floor((totalDetik % 86400) / 3600);
+    var menit = Math.floor((totalDetik % 3600) / 60);
+    var detik = totalDetik % 60;
+
+    if (elHari) elHari.textContent = pad2(hari);
+    if (elJam) elJam.textContent = pad2(jam);
+    if (elMenit) elMenit.textContent = pad2(menit);
+    if (elDetik) elDetik.textContent = pad2(detik);
+
+    if (modePopup === "TRUE" || modePopup === "YA" || modePopup === "1") {
+      setTimeout(mulaiPopup, 800);
+    }
+  }
+
+  function terapkanPengaturan(){
+    var waktuMulai = parseWaktuLokal(aktifCfg.tanggalTampil) || new Date(2026, 10, 25, 0, 0, 0);
+    var waktuSelesai = parseWaktuLokal(aktifCfg.tanggalSelesai) || new Date(2026, 10, 27, 0, 0, 0);
+    if (waktuSelesai <= waktuMulai) {
+      waktuSelesai = new Date(waktuMulai.getTime() + 2 * 864e5);
+    }
+    var mode = String(aktifCfg.modePopup || "").trim().toUpperCase();
+
+    // Hitung simulasi waktu jika ?preview=... digunakan
+    if (previewMode) {
+      var realNow = Date.now();
+      if (previewMode === "countdown") {
+        // Simulasi 2 hari 5 jam 30 menit sebelum tgl 25
+        waktuOffsetMs = (waktuMulai.getTime() - (2 * 864e5 + 5 * 36e5 + 30 * 6e4)) - realNow;
+      } else if (previewMode === "detik") {
+        // Simulasi 10 detik sebelum tgl 25 (bisa lihat hitungan mundur 10..0 lalu pop-up muncul!)
+        waktuOffsetMs = (waktuMulai.getTime() - 10000) - realNow;
+      } else if (previewMode === "hgn") {
+        // Simulasi tepat hari-H (tgl 25 jam 08:00 pagi)
+        waktuOffsetMs = (waktuMulai.getTime() + 8 * 36e5) - realNow;
+      } else if (previewMode === "selesai") {
+        // Simulasi tgl 27 (fitur HGN otomatis hilang)
+        waktuOffsetMs = (waktuSelesai.getTime() + 60000) - realNow;
+      }
+      tampilkanBadgePreview(previewMode);
     }
 
-    // 2. Cek jadwal atau mode aktif pop-up
-    var mode = String(aktifCfg.modePopup || "").trim().toUpperCase();
-    if (mode === "TRUE" || mode === "YA" || mode === "1") {
-      setTimeout(mulaiPopup, 800);
-    } else if (mode === "JADWAL" && hariIni === aktifCfg.tanggalTampil) {
-      setTimeout(mulaiPopup, 800);
-    }
+    if (cdInterval) clearInterval(cdInterval);
+    perbaruiStatusHgn(waktuMulai, waktuSelesai, mode);
+    cdInterval = setInterval(function(){
+      perbaruiStatusHgn(waktuMulai, waktuSelesai, mode);
+    }, 1000);
   }
 
   function muatDariSheet(){
@@ -1386,6 +1623,8 @@ var PENGUMUMAN_CFG = {
         if (val(6).trim()) aktifCfg.namaTombol = val(6).trim();
         if (val(7).trim()) aktifCfg.kataSandi = val(7).trim();
         if (val(8).trim()) aktifCfg.urlTujuan = val(8).trim();
+        var tglSelesaiSheet = parseTanggalSheet(c[9]);
+        if (tglSelesaiSheet) aktifCfg.tanggalSelesai = tglSelesaiSheet;
       } catch(e){
         console.error("Error baca sheet Pengumuman:", e);
       }
@@ -1397,6 +1636,36 @@ var PENGUMUMAN_CFG = {
       terapkanPengaturan();
     };
     script.src = "https://docs.google.com/spreadsheets/d/" + PENGUMUMAN_CFG.sheetId + "/gviz/tq?sheet=" + encodeURIComponent(PENGUMUMAN_CFG.tabName) + "&headers=1&tqx=out:json;responseHandler:" + cbName + "&_t=" + Date.now();
+    document.body.appendChild(script);
+  }
+
+  /* --- OPSIONAL: MUAT JADWAL ACARA SEKOLAH DARI TAB "ACARA" DI GOOGLE SHEETS --- */
+  function muatAcaraDariSheet(){
+    var cbName = "_cbAcara_" + Math.floor(Math.random() * 100000);
+    var script = document.createElement("script");
+    window[cbName] = function(res){
+      delete window[cbName];
+      script.remove();
+      try {
+        var rows = (res && res.table && res.table.rows) || [];
+        rows.forEach(function(r){
+          var c = r.c || [];
+          var tglAcara = parseTanggalSheet(c[0]);
+          var jamAcara = c[1] ? String(c[1].f || c[1].v || "SEMUA").trim() : "SEMUA";
+          var ketAcara = c[2] ? String(c[2].f || c[2].v || "Acara Sekolah").trim() : "Acara Sekolah";
+          if (tglAcara) {
+            ACARA_SEKOLAH.push({tgl: tglAcara, jam: jamAcara, ket: ketAcara});
+          }
+        });
+        if (rows.length) {
+          tampilkanBannerAcaraHariIni();
+          renderGuru(daftarGuruTerakhir);
+          renderJadwalBesok();
+        }
+      } catch(e){}
+    };
+    script.onerror = function(){ delete window[cbName]; script.remove(); };
+    script.src = "https://docs.google.com/spreadsheets/d/" + PENGUMUMAN_CFG.sheetId + "/gviz/tq?sheet=ACARA&headers=1&tqx=out:json;responseHandler:" + cbName + "&_t=" + Date.now();
     document.body.appendChild(script);
   }
 
@@ -1469,6 +1738,7 @@ var PENGUMUMAN_CFG = {
   });
 
   muatDariSheet();
+  muatAcaraDariSheet();
 })();
 </script>
 </body>
